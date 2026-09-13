@@ -25,7 +25,10 @@
         <TextView style="@style/SidebarItem" android:text="Home" />
         <TextView style="@style/SidebarItem" android:text="Projects" />
         <TextView style="@style/SidebarItem" android:text="Tools" />
-        <TextView style="@style/SidebarItem" android:text="Settings" />
+        <TextView
+            android:id="@+id/settingsNavItem"
+            style="@style/SidebarItem"
+            android:text="Settings" />
     </LinearLayout>
 
     <LinearLayout
