@@ -1,5 +1,6 @@
 package com.aalamstudio.compiler;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,11 @@ public class BuildApkActivity extends AppCompatActivity {
         percentText = findViewById(R.id.percentText);
         buildLogText = findViewById(R.id.buildLogText);
         timeRemainingText = findViewById(R.id.timeRemainingText);
+
+        TextView settingsNavItem = findViewById(R.id.settingsNavItem);
+        settingsNavItem.setOnClickListener(v -> {
+            startActivity(new Intent(BuildApkActivity.this, SettingsActivity.class));
+        });
 
         SharedPreferences prefs = getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
         String token = prefs.getString(SettingsActivity.TOKEN_KEY, "");
