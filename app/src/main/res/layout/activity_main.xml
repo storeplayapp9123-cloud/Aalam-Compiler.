@@ -3,12 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:background="#0D0D0D"
+    android:gravity="center"
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aalam Compiler Works!"
-        android:textSize="20sp" />
+        android:text="Aalam Compiler"
+        android:textColor="#F5A623"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/buildButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Build APK"
+        android:textColor="#000000"
+        android:backgroundTint="#F5A623"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1A1A1A" />
 
 </LinearLayout>
