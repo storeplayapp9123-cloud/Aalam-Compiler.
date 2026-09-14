@@ -8,12 +8,24 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * Circular ring progress indicator used on the Build APK screen (matches the
+ * 78% amber ring in the mockup). Track = dark grey, progress arc = amber,
+ * rounded caps, starts from top (-90deg) and sweeps clockwise.
+ */
 public class CircularProgressView extends View {
 
-    private Paint backgroundPaint, progressPaint;
-    private RectF rectF;
-    private int progress = 0;
-    private int strokeWidth = 18;
+    private Paint trackPaint;
+    private Paint progressPaint;
+    private RectF arcRect = new RectF();
+
+    private float progress = 0f; // 0..100
+    private float strokeWidth = 18f;
+
+    public CircularProgressView(Context context) {
+        super(context);
+        init();
+    }
 
     public CircularProgressView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -21,40 +33,46 @@ public class CircularProgressView extends View {
     }
 
     private void init() {
-        backgroundPaint = new Paint();
-        backgroundPaint.setColor(Color.parseColor("#2A2A2A"));
-        backgroundPaint.setStyle(Paint.Style.STROKE);
-        backgroundPaint.setStrokeWidth(strokeWidth);
-        backgroundPaint.setAntiAlias(true);
+        trackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        trackPaint.setStyle(Paint.Style.STROKE);
+        trackPaint.setStrokeWidth(strokeWidth);
+        trackPaint.setColor(Color.parseColor("#26262A"));
 
-        progressPaint = new Paint();
-        progressPaint.setColor(Color.parseColor("#F5A623"));
+        progressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         progressPaint.setStyle(Paint.Style.STROKE);
         progressPaint.setStrokeWidth(strokeWidth);
         progressPaint.setStrokeCap(Paint.Cap.ROUND);
-        progressPaint.setAntiAlias(true);
-
-        rectF = new RectF();
+        progressPaint.setColor(Color.parseColor("#F2A93B")); // amber
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        int size = Math.min(w, h);
-        int padding = strokeWidth;
-        rectF.set(padding, padding, size - padding, size - padding);
+    public void setStrokeWidthDp(float widthPx) {
+        this.strokeWidth = widthPx;
+        trackPaint.setStrokeWidth(widthPx);
+        progressPaint.setStrokeWidth(widthPx);
+        invalidate();
+    }
+
+    /** Animate/set progress 0-100 */
+    public void setProgress(float percent) {
+        this.progress = Math.max(0f, Math.min(100f, percent));
+        invalidate();
+    }
+
+    public float getProgress() {
+        return progress;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawArc(rectF, 0, 360, false, backgroundPaint);
-        float sweepAngle = 360 * progress / 100f;
-        canvas.drawArc(rectF, -90, sweepAngle, false, progressPaint);
-    }
+        float pad = strokeWidth / 2f + 4f;
+        arcRect.set(pad, pad, getWidth() - pad, getHeight() - pad);
 
-    public void setProgress(int progress) {
-        this.progress = progress;
-        invalidate();
+        // background track (full circle)
+        canvas.drawArc(arcRect, 0, 360, false, trackPaint);
+
+        // progress arc, starts at top (-90deg), clockwise
+        float sweep = 360f * (progress / 100f);
+        canvas.drawArc(arcRect, -90f, sweep, false, progressPaint);
     }
 }
