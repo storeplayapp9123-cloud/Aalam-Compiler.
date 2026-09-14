@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_root">#0A0A0A</color>
+    <color name="bg_sidebar">#0D0D0D</color>
+    <color name="bg_card">#141414</color>
+    <color name="bg_card_alt">#181818</color>
+    <color name="border_subtle">#26262A</color>
+
+    <color name="amber">#F2A93B</color>
+    <color name="amber_dark">#C9861F</color>
+    <color name="amber_soft_bg">#2A2113</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#9C9CA3</color>
+    <color name="text_muted">#5E5E66</color>
+
+    <color name="green_success">#3DD68C</color>
+    <color name="cyan_progress">#3DC6D6</color>
+    <color name="red_danger">#E05252</color>
+
+    <color name="android_green">#5DD65D</color>
+</resources>
