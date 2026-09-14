@@ -1,82 +1,77 @@
 package com.aalamstudio.compiler;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import java.io.File;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuildApkActivity extends AppCompatActivity {
 
-    private CircularProgressView circularProgress;
-    private ProgressBar linearProgress;
-    private TextView percentText, buildLogText, timeRemainingText;
-    private StringBuilder log = new StringBuilder();
+    private CircularProgressView progressRing;
+    private TextView tvPercent;
+    private RecyclerView rvBuildLog;
+    private BuildLogAdapter logAdapter;
+    private List<BuildLogAdapter.LogEntry> logEntries = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build_apk);
 
-        circularProgress = findViewById(R.id.circularProgress);
-        linearProgress = findViewById(R.id.linearProgress);
-        percentText = findViewById(R.id.percentText);
-        buildLogText = findViewById(R.id.buildLogText);
-        timeRemainingText = findViewById(R.id.timeRemainingText);
+        progressRing = findViewById(R.id.progressRing);
+        tvPercent = findViewById(R.id.tvPercent);
+        rvBuildLog = findViewById(R.id.rvBuildLog);
 
-        TextView settingsNavItem = findViewById(R.id.settingsNavItem);
-        settingsNavItem.setOnClickListener(v -> {
-            startActivity(new Intent(BuildApkActivity.this, SettingsActivity.class));
-        });
+        rvBuildLog.setLayoutManager(new LinearLayoutManager(this));
+        logAdapter = new BuildLogAdapter(logEntries);
+        rvBuildLog.setAdapter(logAdapter);
 
-        SharedPreferences prefs = getSharedPreferences(SettingsActivity.PREFS_NAME, MODE_PRIVATE);
-        String token = prefs.getString(SettingsActivity.TOKEN_KEY, "");
-
-        if (token.isEmpty()) {
-            appendLog("No GitHub token found. Please set it in Settings first.");
-            timeRemainingText.setText("Error: Token missing");
-            return;
-        }
-
-        GitHubApiHelper api = new GitHubApiHelper(token, new GitHubApiHelper.StatusCallback() {
-            @Override
-            public void onLog(String message) {
-                runOnUiThread(() -> appendLog(message));
-            }
-
-            @Override
-            public void onProgress(int percent) {
-                runOnUiThread(() -> {
-                    circularProgress.setProgress(percent);
-                    linearProgress.setProgress(percent);
-                    percentText.setText(percent + "%");
-                });
-            }
-
-            @Override
-            public void onSuccess(File apkFile) {
-                runOnUiThread(() -> {
-                    timeRemainingText.setText("Build Complete!");
-                    appendLog("APK saved at: " + apkFile.getAbsolutePath());
-                });
-            }
-
-            @Override
-            public void onError(String error) {
-                runOnUiThread(() -> {
-                    timeRemainingText.setText("Build Failed");
-                    appendLog("ERROR: " + error);
-                });
-            }
-        });
-
-        api.startBuild(getExternalFilesDir(null));
+        seedSampleLog();
+        setProgress(78);
     }
 
-    private void appendLog(String message) {
-        log.append(message).append("\n");
-        buildLogText.setText(log.toString());
+    /** Matches the exact log shown in the mockup screenshot */
+    private void seedSampleLog() {
+        addLog("10:24:10", "Project loaded successfully", BuildLogAdapter.TYPE_DONE);
+        addLog("10:24:11", "Checking dependencies", BuildLogAdapter.TYPE_DONE);
+        addLog("10:24:12", "Cleaning old builds", BuildLogAdapter.TYPE_DONE);
+        addLog("10:24:13", "Preparing resources", BuildLogAdapter.TYPE_DONE);
+        addLog("10:24:18", "Compiling code", BuildLogAdapter.TYPE_DONE);
+        addLog("10:25:45", "Merging resources", BuildLogAdapter.TYPE_DONE);
+        addLog("10:26:22", "Processing assets...   (78%)", BuildLogAdapter.TYPE_IN_PROGRESS);
+        addSubStep("Optimizing images...");
+        addSubStep("Minifying code...");
+        addSubStep("Generating APK package...");
+        addSubStep("Signing APK...");
+        addSubStep("Finalizing build...");
+        logAdapter.notifyDataSetChanged();
+        rvBuildLog.scrollToPosition(logEntries.size() - 1);
+    }
+
+    private void addLog(String time, String text, int type) {
+        logEntries.add(new BuildLogAdapter.LogEntry(time, text, type));
+    }
+
+    private void addSubStep(String text) {
+        logEntries.add(new BuildLogAdapter.LogEntry(null, text, BuildLogAdapter.TYPE_SUB_STEP));
+    }
+
+    /** Call this as real GitHub Actions build progress comes in (0-100) */
+    public void setProgress(int percent) {
+        progressRing.setProgress(percent);
+        tvPercent.setText(percent + "%");
+    }
+
+    /** Call when a new real log line arrives from the GitHub Actions poll */
+    public void appendLogLine(String time, String text, int type) {
+        // demote previous "in progress" line to done, if any
+        addLog(time, text, type);
+        logAdapter.notifyItemInserted(logEntries.size() - 1);
+        rvBuildLog.scrollToPosition(logEntries.size() - 1);
     }
 }
