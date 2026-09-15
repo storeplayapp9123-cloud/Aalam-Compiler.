@@ -4,672 +4,427 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/bg_root">
+    android:background="#0D0D0D">
 
-    <!-- ================= LEFT SIDEBAR ================= -->
+    <!-- LEFT SIDEBAR -->
     <LinearLayout
-        android:layout_width="220dp"
+        android:layout_width="130dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/bg_sidebar"
-        android:paddingTop="20dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
-
-        <!-- Logo -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AS"
-            android:textColor="@color/amber"
-            android:textSize="34sp"
-            android:fontFamily="serif" />
+        android:background="#151515"
+        android:padding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="AALAM COMPILER"
-            android:textColor="@color/text_primary"
+            android:text="AALAM STUDIO"
+            android:textColor="#F5A623"
             android:textStyle="bold"
-            android:textSize="15sp"
-            android:letterSpacing="0.08" />
+            android:textSize="12sp"
+            android:layout_marginBottom="20dp" />
 
+        <TextView style="@style/SidebarItem" android:text="Home" />
+        <TextView style="@style/SidebarItem" android:text="Projects" />
+        <TextView style="@style/SidebarItem" android:text="Templates" />
+        <TextView style="@style/SidebarItem" android:text="Assets" />
+        <TextView style="@style/SidebarItem" android:text="Tools" />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BUILD. COMPILE. SHIP."
-            android:textColor="@color/amber_dark"
-            android:textSize="8sp"
-            android:letterSpacing="0.1"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Nav items (only what Aalam Compiler actually has) -->
-        <TextView
-            android:id="@+id/navHome"
-            style="@style/SidebarNavItem"
-            android:text="  Home"
-            android:textColor="@color/text_secondary"/>
-
-        <TextView
-            android:id="@+id/navBuildApk"
-            style="@style/SidebarNavItem"
-            android:text="  Build APK"
-            android:background="@drawable/bg_pill_selected_amber"
-            android:textColor="@color/amber"/>
-
-        <TextView
-            android:id="@+id/navSettings"
-            style="@style/SidebarNavItem"
-            android:text="  Settings"
-            android:textColor="@color/text_secondary"/>
-
-        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
-
-        <!-- User card -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_card_rounded"
-            android:padding="10dp"
-            android:layout_marginBottom="16dp">
-
-            <TextView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="@drawable/bg_step_circle_active"
-                android:gravity="center"
-                android:text="A"
-                android:textColor="#000000"
-                android:textStyle="bold"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aalam Creator"
-                    android:textColor="@color/text_primary"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pro Plan"
-                    android:textColor="@color/amber"
-                    android:textSize="11sp"/>
-            </LinearLayout>
-        </LinearLayout>
+            android:id="@+id/settingsNavItem"
+            style="@style/SidebarItem"
+            android:text="Settings" />
     </LinearLayout>
 
-    <!-- ================= MAIN CONTENT ================= -->
-    <LinearLayout
+    <!-- CENTER COLUMN -->
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_weight="2">
 
-        <!-- Header row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <!-- HEADER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_revert"
+                    app:tint="#FFFFFF" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Build APK"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Build and export your application"
+                        android:textColor="#888888"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- APP INFO ROW -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="#151515"
+                android:padding="10dp"
+                android:layout_marginBottom="14dp">
+
+                <View
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="#F5A623" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:id="@+id/tvAppName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aalam Compiler"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvPackageVersion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="com.aalamstudio.compiler • v1.0.0"
+                        android:textColor="#888888"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- PROGRESS RING + STATUS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <FrameLayout
+                    android:layout_width="90dp"
+                    android:layout_height="90dp">
+
+                    <com.aalamstudio.compiler.CircularProgressView
+                        android:id="@+id/progressRing"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/tvPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="0%"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Building APK..."
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSubStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compiling resources and optimizing your app"
+                        android:textColor="#888888"
+                        android:textSize="10sp" />
+
+                    <ProgressBar
+                        android:id="@+id/progressLinear"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:progressTint="#F5A623"
+                        android:max="100" />
+
+                    <TextView
+                        android:id="@+id/tvTimeRemaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calculating time..."
+                        android:textColor="#888888"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 7-STEP INDICATOR -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="14dp">
+
+                <LinearLayout android:id="@+id/step1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                    <TextView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/step_circle_pending" android:text="1" android:textColor="#FFFFFF" android:textSize="9sp" android:gravity="center" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Prep" android:textColor="#888888" android:textSize="8sp" />
+                </LinearLayout>
+
+                <View android:layout_width="10dp" android:layout_height="1dp" android:background="#2A2A2A" />
+
+                <LinearLayout android:id="@+id/step2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                    <TextView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/step_circle_pending" android:text="2" android:textColor="#FFFFFF" android:textSize="9sp" android:gravity="center" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Compile" android:textColor="#888888" android:textSize="8sp" />
+                </LinearLayout>
+
+                <View android:layout_width="10dp" android:layout_height="1dp" android:background="#2A2A2A" />
+
+                <LinearLayout android:id="@+id/step3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                    <TextView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/step_circle_pending" android:text="3" android:textColor="#FFFFFF" android:textSize="9sp" android:gravity="center" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Process" android:textColor="#888888" android:textSize="8sp" />
+                </LinearLayout>
+
+                <View android:layout_width="10dp" android:layout_height="1dp" android:background="#2A2A2A" />
+
+                <LinearLayout android:id="@+id/step4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                    <TextView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/step_circle_pending" android:text="4" android:textColor="#FFFFFF" android:textSize="9sp" android:gravity="center" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Optimize" android:textColor="#888888" android:textSize="8sp" />
+                </LinearLayout>
+
+                <View android:layout_width="10dp" android:layout_height="1dp" android:background="#2A2A2A" />
+
+                <LinearLayout android:id="@+id/step5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                    <TextView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/step_circle_pending" android:text="5" android:textColor="#FFFFFF" android:textSize="9sp" android:gravity="center" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Package" android:textColor="#888888" android:textSize="8sp" />
+                </LinearLayout>
+
+                <View android:layout_width="10dp" android:layout_height="1dp" android:background="#2A2A2A" />
+
+                <LinearLayout android:id="@+id/step6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                    <TextView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/step_circle_pending" android:text="6" android:textColor="#FFFFFF" android:textSize="9sp" android:gravity="center" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sign" android:textColor="#888888" android:textSize="8sp" />
+                </LinearLayout>
+
+                <View android:layout_width="10dp" android:layout_height="1dp" android:background="#2A2A2A" />
+
+                <LinearLayout android:id="@+id/step7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                    <TextView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/step_circle_pending" android:text="7" android:textColor="#FFFFFF" android:textSize="9sp" android:gravity="center" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Done" android:textColor="#888888" android:textSize="8sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- BUILD LOG -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Build Log"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnClearLog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clear"
+                    android:textSize="9sp"
+                    android:backgroundTint="#1A1A1A"
+                    android:textColor="#CCCCCC" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBuildLog"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#151515"
+                android:padding="6dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- BOTTOM INFO + BUTTONS -->
+            <TextView
+                android:id="@+id/tvBuildStarted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Build Started: --"
+                android:textColor="#888888"
+                android:textSize="9sp" />
 
             <TextView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_icon_circle"
-                android:gravity="center"
-                android:text="←"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"/>
+                android:id="@+id/tvEstimatedTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estimated Time: --"
+                android:textColor="#888888"
+                android:textSize="9sp"
+                android:layout_marginBottom="10dp" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="12dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btnCancelBuild"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Build APK"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
+                    android:layout_weight="1"
+                    android:text="Cancel"
+                    android:textSize="10sp"
+                    android:textColor="#FF5C5C"
+                    android:backgroundTint="#1A1A1A" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btnRunBackground"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Build and export your application"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp"/>
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="Run in BG"
+                    android:textSize="10sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#1A1A1A" />
+
+                <Button
+                    android:id="@+id/btnBuildBackground"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="Build BG"
+                    android:textSize="10sp"
+                    android:textColor="#000000"
+                    android:backgroundTint="#F5A623" />
             </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- RIGHT PANEL -->
+    <ScrollView
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:background="#151515">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_button_outline"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="❓  Help"
-                android:textColor="@color/text_primary"
-                android:textSize="13sp"/>
-        </LinearLayout>
+                android:text="Build Configuration"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="10dp" />
 
-        <!-- App info row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
-
-            <View
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_step_circle_active"/>
-
+            <TextView style="@style/ConfigLabel" android:text="Build Type" />
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="12dp"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btnDebug"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Finance Hub"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold"
-                        android:textSize="16sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_pill_unselected"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="2dp"
-                        android:paddingBottom="2dp"
-                        android:text="APP"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="10sp"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="com.aalamstudio.financehub  •  Version 1.0.0 (1)"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Middle: center column + right panel -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <!-- CENTER COLUMN -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginEnd="16dp">
-
-                <!-- Progress card -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/bg_card_rounded"
-                    android:padding="20dp"
-                    android:layout_marginBottom="16dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                        <FrameLayout
-                            android:layout_width="110dp"
-                            android:layout_height="110dp">
-
-                            <com.aalamstudio.compiler.ui.CircularProgressView
-                                android:id="@+id/progressRing"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-
-                            <TextView
-                                android:id="@+id/tvPercent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:text="78%"
-                                android:textColor="@color/text_primary"
-                                android:textStyle="bold"
-                                android:textSize="24sp"/>
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="20dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Building APK..."
-                                android:textColor="@color/text_primary"
-                                android:textStyle="bold"
-                                android:textSize="17sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Compiling resources and optimizing your app"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="12sp"
-                                android:layout_marginBottom="10dp"/>
-
-                            <ProgressBar
-                                android:id="@+id/linearProgress"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="8dp"
-                                android:progressTint="@color/amber"
-                                android:progressBackgroundTint="@color/border_subtle"
-                                android:progress="78"
-                                android:max="100"/>
-
-                            <TextView
-                                android:id="@+id/tvTimeRemaining"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="7m 24s remaining"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <!-- Step indicator -->
-                    <LinearLayout
-                        android:id="@+id/stepIndicatorContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center_vertical">
-                        <!-- Populate 7 step views programmatically, OR use the
-                             repeated block below as a static reference layout -->
-
-                        <!-- Step 1: done -->
-                        <include layout="@layout/step_item_done" />
-                        <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="@color/amber"/>
-                        <!-- Step 2: done -->
-                        <include layout="@layout/step_item_done" />
-                        <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="@color/amber"/>
-                        <!-- Step 3: active -->
-                        <include layout="@layout/step_item_active" />
-                        <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="@color/border_subtle"/>
-
-                        <!-- Step 4: pending -->
-                        <LinearLayout style="@style/StepPendingWrap">
-                            <TextView style="@style/StepCirclePending" android:text="4"/>
-                            <TextView style="@style/StepLabelPending" android:text="Optimizing"/>
-                        </LinearLayout>
-                        <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="@color/border_subtle"/>
-
-                        <!-- Step 5: pending -->
-                        <LinearLayout style="@style/StepPendingWrap">
-                            <TextView style="@style/StepCirclePending" android:text="5"/>
-                            <TextView style="@style/StepLabelPending" android:text="Packaging"/>
-                        </LinearLayout>
-                        <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="@color/border_subtle"/>
-
-                        <!-- Step 6: pending -->
-                        <LinearLayout style="@style/StepPendingWrap">
-                            <TextView style="@style/StepCirclePending" android:text="6"/>
-                            <TextView style="@style/StepLabelPending" android:text="Signing"/>
-                        </LinearLayout>
-                        <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="@color/border_subtle"/>
-
-                        <!-- Step 7: pending -->
-                        <LinearLayout style="@style/StepPendingWrap">
-                            <TextView style="@style/StepCirclePending" android:text="7"/>
-                            <TextView style="@style/StepLabelPending" android:text="Completed"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Build log card -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:background="@drawable/bg_card_rounded"
-                    android:padding="16dp">
+                    android:text="Debug"
+                    android:textSize="9sp"
+                    android:backgroundTint="#1A1A1A"
+                    android:textColor="#FFFFFF" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="10dp">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Build Log"
-                            android:textColor="@color/text_primary"
-                            android:textStyle="bold"
-                            android:textSize="15sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_button_outline"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:paddingTop="6dp"
-                            android:paddingBottom="6dp"
-                            android:text="🗑  Clear Log"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="12sp"/>
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvBuildLog"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:scrollbars="vertical"/>
-                </LinearLayout>
-
-                <!-- Bottom info row -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/btnRelease"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/bg_card_rounded"
-                    android:padding="14dp"
-                    android:layout_marginTop="16dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="📅  Build Started\nMay 20, 2025 10:24 AM"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="🕐  Estimated Time\n~ 9m 24s"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="⚙️  Configuration\nRelease Build • Android"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"/>
-                </LinearLayout>
-
-                <!-- Action buttons -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="14dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/bg_danger_outline"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:text="✕  Cancel Build"
-                        android:textColor="@color/red_danger"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/bg_button_outline"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:text="⤢  Run in Background"
-                        android:textColor="@color/text_primary"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:background="@drawable/bg_button_amber"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:text="▷  Build in Background"
-                        android:textColor="#000000"
-                        android:textStyle="bold"
-                        android:textSize="13sp"/>
-                </LinearLayout>
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:text="Release"
+                    android:textSize="9sp"
+                    android:backgroundTint="#F5A623"
+                    android:textColor="#000000" />
             </LinearLayout>
 
-            <!-- RIGHT PANEL -->
-            <ScrollView
-                android:layout_width="300dp"
-                android:layout_height="match_parent">
+            <TextView style="@style/ConfigLabel" android:text="Min SDK" />
+            <TextView android:id="@+id/tvMinSdk" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Android 7.0 (API 24)" android:textColor="#FFFFFF" android:textSize="10sp" android:background="#1A1A1A" android:padding="6dp" android:layout_marginBottom="10dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <TextView style="@style/ConfigLabel" android:text="Target SDK" />
+            <TextView android:id="@+id/tvTargetSdk" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Android 14 (API 34)" android:textColor="#FFFFFF" android:textSize="10sp" android:background="#1A1A1A" android:padding="6dp" android:layout_marginBottom="10dp" />
 
-                    <!-- Build Configuration card -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@drawable/bg_card_rounded"
-                        android:padding="16dp"
-                        android:layout_marginBottom="16dp">
+            <TextView style="@style/ConfigLabel" android:text="Build Variant" />
+            <TextView android:id="@+id/tvBuildVariant" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="arm64-v8a" android:textColor="#FFFFFF" android:textSize="10sp" android:background="#1A1A1A" android:padding="6dp" android:layout_marginBottom="16dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="⚙️  Build Configuration"
-                            android:textColor="@color/text_primary"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:layout_marginBottom="14dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Output"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp" />
 
-                        <TextView style="@style/FieldLabel" android:text="Build Type"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="14dp">
+            <TextView style="@style/ConfigLabel" android:text="Output Path" />
+            <TextView android:id="@+id/tvOutputPath" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="/Android/data/com.aalamstudio.compiler" android:textColor="#888888" android:textSize="9sp" android:layout_marginBottom="8dp" />
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginEnd="8dp"
-                                android:background="@drawable/bg_pill_unselected"
-                                android:gravity="center"
-                                android:padding="10dp"
-                                android:text="⬡  Debug"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="12sp"/>
+            <TextView style="@style/ConfigLabel" android:text="File Name" />
+            <TextView android:id="@+id/tvFileName" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="aalam-compiler-output.apk" android:textColor="#888888" android:textSize="9sp" android:layout_marginBottom="8dp" />
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_pill_selected_amber"
-                                android:gravity="center"
-                                android:padding="10dp"
-                                android:text="🔒  Release"
-                                android:textColor="@color/amber"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
+            <TextView style="@style/ConfigLabel" android:text="Expected Size" />
+            <TextView android:id="@+id/tvExpectedSize" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="-- MB" android:textColor="#888888" android:textSize="9sp" />
 
-                        <TextView style="@style/FieldLabel" android:text="Target Platform"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginBottom="14dp">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_marginEnd="8dp"
-                                android:background="@drawable/bg_pill_selected_green"
-                                android:gravity="center"
-                                android:padding="10dp"
-                                android:text="🤖  Android"
-                                android:textColor="@color/android_green"
-                                android:textSize="12sp"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_pill_unselected"
-                                android:gravity="center"
-                                android:padding="10dp"
-                                android:text="⊞  Universal"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="12sp"/>
-                        </LinearLayout>
-
-                        <TextView style="@style/FieldLabel" android:text="Min SDK"/>
-                        <TextView style="@style/DropdownField" android:text="Android 7.0 (API 24)  ⌄"/>
-
-                        <TextView style="@style/FieldLabel" android:text="Target SDK"/>
-                        <TextView style="@style/DropdownField" android:text="Android 14 (API 34)  ⌄"/>
-
-                        <TextView style="@style/FieldLabel" android:text="Build Variant"/>
-                        <TextView style="@style/DropdownField" android:text="arm64-v8a (Recommended)  ⌄"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="⚙️  Advanced Settings  ⌄"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="12sp"/>
-                    </LinearLayout>
-
-                    <!-- Output card -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@drawable/bg_card_rounded"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Output"
-                            android:textColor="@color/text_primary"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:layout_marginBottom="14dp"/>
-
-                        <TextView style="@style/FieldLabel" android:text="Output Path"/>
-                        <TextView style="@style/DropdownField" android:text="📁 /storage/emulated/0/Aalam Studio/Builds"/>
-
-                        <TextView style="@style/FieldLabel" android:text="File Name"/>
-                        <TextView style="@style/DropdownField" android:text="FinanceHub_v1.0.0_release.apk"/>
-
-                        <TextView style="@style/FieldLabel" android:text="Expected Size"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="42.6 MB (approx.)"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="12sp"
-                            android:layout_marginBottom="14dp"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Build Output (Will be available)"
-                            android:textColor="@color/text_muted"
-                            android:textSize="11sp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:background="@drawable/bg_pill_unselected"
-                            android:padding="10dp"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="📦  FinanceHub_v1.0.0_release.apk\nAPK File"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="42.6 MB ⬇"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </ScrollView>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
