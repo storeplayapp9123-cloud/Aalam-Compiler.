@@ -165,7 +165,7 @@
                 android:paddingEnd="16dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="?  Help"
+                android:text="❓  Help"
                 android:textColor="@color/text_primary"
                 android:textSize="13sp"/>
         </LinearLayout>
