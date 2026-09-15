@@ -32,7 +32,7 @@ public class BuildApkActivity extends AppCompatActivity {
         rvBuildLog.setAdapter(logAdapter);
 
         seedSampleLog();
-        setProgress(78);
+        updateBuildProgress(78);
     }
 
     /** Matches the exact log shown in the mockup screenshot */
@@ -62,14 +62,13 @@ public class BuildApkActivity extends AppCompatActivity {
     }
 
     /** Call this as real GitHub Actions build progress comes in (0-100) */
-    public void setProgress(int percent) {
+    public void updateBuildProgress(int percent) {
         progressRing.setProgress(percent);
         tvPercent.setText(percent + "%");
     }
 
     /** Call when a new real log line arrives from the GitHub Actions poll */
     public void appendLogLine(String time, String text, int type) {
-        // demote previous "in progress" line to done, if any
         addLog(time, text, type);
         logAdapter.notifyItemInserted(logEntries.size() - 1);
         rvBuildLog.scrollToPosition(logEntries.size() - 1);
