@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- TERE PURANE COLORS - SAME TO SAME -->
     <color name="bg_root">#0A0A0A</color>
     <color name="bg_sidebar">#0D0D0D</color>
     <color name="bg_card">#141414</color>
@@ -19,4 +20,17 @@
     <color name="red_danger">#E05252</color>
 
     <color name="android_green">#5DD65D</color>
+
+    <!-- MERE NAYE COLORS - TERE CODE KE LIYE ZARURI -->
+    <!-- Image wala Gold color, tere amber se match kiya hai -->
+    <color name="gold">#F2A93B</color>
+    <color name="gold_dark">#C9861F</color>
+    <color name="card_dark">#181818</color>
+    <color name="text_dim">#5E5E66</color>
+    <color name="bg_log">#101010</color>
+    
+    <!-- Step ke liye -->
+    <color name="step_done_bg">#F2A93B</color>
+    <color name="step_active_bg">#F2A93B</color>
+    <color name="step_pending_bg">#26262A</color>
 </resources>
